@@ -9,4 +9,14 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
 
-export default createJestConfig(config);
+async function jestConfig(): Promise<Config> {
+  const nextConfig = await createJestConfig(config)();
+  return {
+    ...nextConfig,
+    transformIgnorePatterns: [
+      '/node_modules/(?!(next-intl|use-intl|@formatjs|intl-messageformat)/)',
+    ],
+  };
+}
+
+export default jestConfig;
