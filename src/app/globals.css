@@ -1,17 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-cream: #FAF8F4;
+  --color-deep-brown: #2C1A0E;
+  --color-accent: #C4956A;
+
+  --font-family-serif: var(--font-cormorant), Georgia, serif;
+  --font-family-sans: var(--font-jakarta), system-ui, sans-serif;
+
+  --animate-fade-in: fade-in 0.8s ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @layer base {
   html {
     scroll-behavior: smooth;
-  }
-
-  h1, h2, h3 {
-    @apply font-serif;
-  }
-
-  body {
-    @apply text-deep-brown;
   }
 }
