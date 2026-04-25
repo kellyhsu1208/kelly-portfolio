@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "tagline": "Designer · Content Creator",
+    "viewPortfolio": "View Portfolio",
+    "featuredTitle": "Featured Work",
+    "bio": "I'm Kelly, a freelance designer and content creator.",
+    "aboutLink": "Learn more"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "all": "All",
+    "graphic": "Graphic Design",
+    "threeD": "3D"
+  },
+  "blog": {
+    "title": "Blog",
+    "allTags": "All"
+  },
+  "about": {
+    "title": "About",
+    "skillsTitle": "Skills"
+  },
+  "contact": {
+    "title": "Contact",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Your message",
+    "submit": "Send",
+    "success": "Message sent, thank you!",
+    "error": "Send failed, please try again."
+  }
+}
