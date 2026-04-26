@@ -66,17 +66,29 @@ export function mapToBlogPost(page: PageObjectResponse): BlogPost {
   };
 }
 
+async function queryDatabase(databaseId: string, body: object): Promise<PageObjectResponse[]> {
+  const res = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
+      'Notion-Version': '2022-06-28',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  const json = await res.json() as { results: PageObjectResponse[] };
+  return json.results;
+}
+
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
-  const response = await notion.dataSources.query({
-    data_source_id: process.env.NOTION_PORTFOLIO_DB_ID!,
+  const results = await queryDatabase(process.env.NOTION_PORTFOLIO_DB_ID!, {
     filter: { property: '是否公開', checkbox: { equals: true } },
   });
-  return (response.results as PageObjectResponse[]).map(mapToPortfolioItem);
+  return results.map(mapToPortfolioItem);
 }
 
 export async function getFeaturedPortfolioItems(): Promise<PortfolioItem[]> {
-  const response = await notion.dataSources.query({
-    data_source_id: process.env.NOTION_PORTFOLIO_DB_ID!,
+  const results = await queryDatabase(process.env.NOTION_PORTFOLIO_DB_ID!, {
     filter: {
       and: [
         { property: '是否公開', checkbox: { equals: true } },
@@ -84,16 +96,15 @@ export async function getFeaturedPortfolioItems(): Promise<PortfolioItem[]> {
       ],
     },
   });
-  return (response.results as PageObjectResponse[]).map(mapToPortfolioItem);
+  return results.map(mapToPortfolioItem);
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  const response = await notion.dataSources.query({
-    data_source_id: process.env.NOTION_BLOG_DB_ID!,
+  const results = await queryDatabase(process.env.NOTION_BLOG_DB_ID!, {
     filter: { property: '是否公開', checkbox: { equals: true } },
     sorts: [{ property: '發布日期', direction: 'descending' }],
   });
-  return (response.results as PageObjectResponse[]).map(mapToBlogPost);
+  return results.map(mapToBlogPost);
 }
 
 export async function getBlogPost(pageId: string): Promise<BlogPostWithContent> {
