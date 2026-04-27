@@ -2,14 +2,18 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-cream: #FAF8F4;
-  --color-deep-brown: #2C1A0E;
-  --color-accent: #C4956A;
+  /* 10分慢生活品牌配色 */
+  --color-cream: #F0F7FB;          /* 天空霧白 — 主背景 */
+  --color-deep-brown: #1D3A4A;     /* 深海藍 — 主文字 */
+  --color-accent: #6BAFD6;         /* 品牌藍 — 互動色 */
+  --color-sky-soft: #C5E0EE;       /* 淺藍 — 邊框 / 分隔線 */
+  --color-sky-pale: #E8F4FA;       /* 極淺藍 — hover 背景 */
 
   --font-family-serif: var(--font-cormorant), Georgia, serif;
   --font-family-sans: var(--font-jakarta), system-ui, sans-serif;
 
   --animate-fade-in: fade-in 0.8s ease-out both;
+  --animate-fade-up: fade-up 0.6s ease-out both;
 }
 
 @keyframes fade-in {
@@ -23,8 +27,24 @@
   }
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-deep-brown);
   }
 }

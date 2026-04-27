@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -25,10 +26,19 @@ export default function Navbar({ locale }: NavbarProps) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-deep-brown/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-sky-soft">
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href={`/${locale}`} className="font-serif text-xl tracking-wide" onClick={() => setOpen(false)}>
-          Kelly Hsu
+        <Link href={`/${locale}`} className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
+          <Image
+            src="/logo.png"
+            alt="10分慢生活"
+            width={36}
+            height={36}
+            className="object-contain"
+          />
+          <span className="font-serif text-sm tracking-widest text-deep-brown/70 hidden sm:block group-hover:text-accent transition-colors">
+            EMBRACE SLOW LIVING
+          </span>
         </Link>
 
         {/* 桌機版選單 */}
@@ -37,14 +47,14 @@ export default function Navbar({ locale }: NavbarProps) {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm tracking-wide hover:text-accent transition-colors"
+              className="text-sm tracking-wide text-deep-brown/70 hover:text-accent transition-colors"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href={otherLocalePath}
-            className="text-xs font-medium border border-deep-brown/30 px-2 py-1 rounded hover:border-accent hover:text-accent transition-colors"
+            className="text-xs font-medium border border-sky-soft px-2 py-1 rounded hover:border-accent hover:text-accent transition-colors"
           >
             {otherLocale.toUpperCase()}
           </Link>
@@ -54,7 +64,7 @@ export default function Navbar({ locale }: NavbarProps) {
         <div className="flex md:hidden items-center gap-3">
           <Link
             href={otherLocalePath}
-            className="text-xs font-medium border border-deep-brown/30 px-2 py-1 rounded"
+            className="text-xs font-medium border border-sky-soft px-2 py-1 rounded"
             onClick={() => setOpen(false)}
           >
             {otherLocale.toUpperCase()}
@@ -73,7 +83,7 @@ export default function Navbar({ locale }: NavbarProps) {
 
       {/* 手機版下拉選單 */}
       {open && (
-        <div className="md:hidden bg-cream border-t border-deep-brown/10 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-cream border-t border-sky-soft px-6 py-4 flex flex-col gap-4">
           {links.map((link) => (
             <Link
               key={link.href}
