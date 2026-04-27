@@ -37,18 +37,10 @@ export default function HeroSection({ locale }: HeroSectionProps) {
         10分慢生活 · Embrace Slow Living
       </p>
 
-      {/* 姓名 */}
-      <h1
-        className="font-serif text-5xl md:text-7xl font-light tracking-wide mb-4 animate-fade-in"
-        style={{ animationDelay: '200ms' }}
-      >
-        許逸怜 Kelly Hsu
-      </h1>
-
       {/* 副標 */}
       <p
         className="text-base md:text-lg text-deep-brown/50 tracking-widest uppercase mb-12 animate-fade-in"
-        style={{ animationDelay: '300ms' }}
+        style={{ animationDelay: '200ms' }}
       >
         {t('tagline')}
       </p>
@@ -56,7 +48,7 @@ export default function HeroSection({ locale }: HeroSectionProps) {
       {/* CTA 按鈕 */}
       <div
         className="flex flex-col sm:flex-row gap-4 animate-fade-in"
-        style={{ animationDelay: '400ms' }}
+        style={{ animationDelay: '300ms' }}
       >
         <Link
           href={`/${locale}/portfolio`}
